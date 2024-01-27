@@ -1,7 +1,7 @@
 
 import NavBar from "./components/NavBar"; 
 import Footer from "./components/Footer";
-import Routes from "./components/Routes";
+import AppRoutes from "./components/AppRoutes";
 import { useState } from "react";
 
 
@@ -11,6 +11,8 @@ function App() {
     <>
    <div className={darkTheme ? "dark" : ""}>
     <NavBar onDarkTheme = {setdarkTheme} darkTheme={darkTheme}/>
+    <AppRoutes/>
+    <Footer /> 
    </div>
     </>
   )
