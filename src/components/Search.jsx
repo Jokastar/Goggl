@@ -1,7 +1,7 @@
 function Search() {
     return (
         <>
-            <input type="text" className="flex-grow-1 border border-black rounded-2xl p-5 px-10 mx-15" />
+            <input type="text" className="flex-grow-1 border rounded-2xl mx-15 px-6 py-1 dark:bg-gray-800 dark:text-white dark:border-white" />
         </>
     );
 }
