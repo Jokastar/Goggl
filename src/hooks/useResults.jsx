@@ -1,27 +1,34 @@
 import {useState, useEffect} from "react"; 
 import apiClient from "../services/apiClient";
+import buildHttpRequest from "../services/buildHttpRequest"; 
+import  {useDebounce}  from "use-debounce";
 
-function useResults(type) {
+
+
+function useResults(searchTerm, type){
+
     const [results, setResults] = useState([]); 
     const [isLoading, setLoading] = useState(false); 
-    const [searchTerm, setSearchTerm] = useState("Elon Musk"); 
     const [error, setError] = useState(""); 
+    const [debounceSearchTerm] = useDebounce(searchTerm, 1000); 
+   
+     
+    const requestBody = searchTerm && buildHttpRequest(searchTerm, type, 10); 
 
-    useEffect(()=>{
-        setLoading(true); 
-
-        apiClient.get(`/${type}`, {params:{query:searchTerm, limit:"10"}})
-        .then(({data}) => {
-            setResults(data.results); 
-            setLoading(false); 
-        })
-        .catch(err => {
-            setError(err.message); 
-            console.log(error)
-            setLoading(false); 
-        })
-        return {error, isLoading, results}; 
-    }, []); 
+        useEffect(() => {
+        setLoading(true);
+    
+        apiClient.post(type, requestBody)
+          .then(({ data }) => {
+            setResults(data.result);
+            setLoading(false);
+          })
+          .catch(err => {
+            setError(err.error || "an error occured")
+            setLoading(false);
+          });
+      }, [debounceSearchTerm, type]);
+      return {results, error, isLoading} 
 }
 
 export default useResults;
