@@ -8,10 +8,9 @@ function buildHttpRequest( text, type, max_results){
 
     }
     switch(type){
-        case "/websearch":
-            requestBody =  requestBody;
+        case "websearch":
             break; 
-        case "/imagesearch":
+        case "imagesearch":
             requestBody =  {...requestBody, 
             color: "",
             size: "",
@@ -19,20 +18,22 @@ function buildHttpRequest( text, type, max_results){
             layout: ""
         }
             break; 
-        case "/videosearch":
+        case "videosearch":
             requestBody =  {...requestBody, 
                 duration: "",
                 resolution: "",
             }
             break;
-        case "/":
+        case "":
             requestBody ={
                 text: text,
-                region: wt-wt,
+                region:" wt-wt",
                 max_results: max_results
             } 
+            break; 
          default :
-            requestBody = {}   
+
+            break;    
 
     }
     return requestBody; 

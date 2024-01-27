@@ -14,6 +14,7 @@ function useResults(searchTerm, type){
    
      
     const requestBody = searchTerm && buildHttpRequest(searchTerm, type, 10); 
+    console.log(requestBody); 
 
         useEffect(() => {
         setLoading(true);

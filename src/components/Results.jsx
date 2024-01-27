@@ -7,18 +7,23 @@ function results({searchTerm, type}) {
 
     const {results, error, isLoading} = useResults(searchTerm, type); 
       
-    if(error) return(<p>{error}</p>)
+    //if(error) return(<p>{error}</p>)
 
-    return (
-        <>
-        {isLoading && <Loading/>}
-        <h1>{searchTerm}</h1>
-        <h1>{}</h1>
-        <ul>
-            {results && results.map((result, index) => (<li key={index}>{result.title}</li>))}
-        </ul>
-        </>
-    );
+    if (isLoading) {
+      return <Loading />;
+    }
+  
+    switch (type) {
+      case "websearch":
+        return <h2>Web Search</h2>;
+      case "imagesearch":
+        return <h2>Image Search</h2>;
+      case "videosearch":
+        return <h2>Video Search</h2>;
+      default:
+        return <h2>Results</h2>;
+    }
+  
 }
 
 export default results;
