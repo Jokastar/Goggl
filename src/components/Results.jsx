@@ -1,3 +1,4 @@
+import Loading from "./Loading";
 import { useEffect, useState } from "react";
 import {useLocation} from "react-router-dom"; 
 import apiClient from "../services/apiClient";
@@ -12,14 +13,14 @@ function results({searchTerm}) {
   
 
     const requestData = {
-        text: searchTerm,
+        text: "elon Musk",
         safesearch: 'off',
         timelimit: '',
         region: 'wt-wt',
         max_results: 20
       };
     
-       /* useEffect(() => {
+        useEffect(() => {
         setLoading(true);
     
         apiClient.post(type, requestData)
@@ -31,14 +32,14 @@ function results({searchTerm}) {
             setError(err.error || "an error occured")
             setLoading(false);
           });
-      }, []); */
+      }, [searchTerm]); 
     
       
     if(error) return(<p>{error}</p>)
 
     return (
         <>
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <Loading/>}
         <h1>{searchTerm}</h1>
         <ul>
             {results && results.map((result, index) => (<li key={index}>{result.title}</li>))}
