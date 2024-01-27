@@ -1,14 +1,13 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Results from "./Results";
 
-function AppRoutes() {
+function AppRoutes({searchTerm}) {
   return (
     <Routes>
-        <Route path="/" element={<Navigate to="/search" />} />
-        <Route path="/search" element={<Results />} />
-        <Route path="/movies" element={<Results />} />
-        <Route path="/images" element={<Results />} />
-        <Route path="/news" element={<Results />} />
+        <Route path="/" element={<Navigate to="/websearch" />} />
+        <Route path="/websearch" element={<Results searchTerm={searchTerm} />} />
+        <Route path="/videosearch" element={<Results searchTerm={searchTerm} />} />
+        <Route path="/imagesearch" element={<Results searchTerm={searchTerm} />} />
     </Routes>
   );
 }
