@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
+import Search from "./Search";
 function NavBar({darkTheme, onDarkTheme}) {
     return ( 
         <>
         <div className="p-5 pb-0 flex flex-wrap sm:justify-between justify-center items-center">
             <div className="flex justify-between items-center space-x-5 w-screen ">
-                <Link to="/" className="text-2xl bg-blue-500 font-bold text-white px-5 py-1 rounded-md">Goggl</Link>
+                <Link to="/" className="text-2xl bg-blue-500 font-bold text-white px-6 py-2 rounded-md">Goggl</Link>
+                <Search/>
                 <button 
                     onClick={()=> onDarkTheme(prev=>!prev)}
-                    className="px-3 py-1 bg-gray-200 text-black rounded hover:shadow-lg"
+                    className="px-5 py-1 bg-black text-white rounded-full mx-0 dark:bg-white dark:text-black"
                  >
                 {darkTheme ? "light": "dark"}
               </button>
